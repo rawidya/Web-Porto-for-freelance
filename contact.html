@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak RawidyaDev - Pilih Paket Website Kamu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .contact-container {
+            padding-top: 120px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-teal);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-info {
+            background: var(--primary-light-blue);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="glass-card">
+        <nav>
+            <div class="logo"><a href="index.html">Param</a></div>
+            <a href="index.html" class="btn-text"><i class="fas fa-arrow-left"></i> Kembali</a>
+        </nav>
+    </header>
+
+    <div class="contact-container">
+        <div class="contact-form glass-card">
+            <h2 class="mb-20">Konfirmasi Pemesanan</h2>
+            <div class="form-info">
+                <i class="fas fa-info-circle" style="color: var(--secondary-blue);"></i>
+                <span>Isi form ini dan kamu akan langsung diarahkan ke WhatsApp saya untuk diskusi lebih lanjut.</span>
+            </div>
+            <form id="wa-form">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" placeholder="Masukkan nama kamu" required>
+                </div>
+                <div class="form-group">
+                    <label for="paket">Pilih Paket</label>
+                    <select id="paket" required>
+                        <option value="Paket A (Hemat)">Paket A (Hemat) - Rp 250.000</option>
+                        <option value="Paket B (Standar)">Paket B (Standar) - Rp 350.000</option>
+                        <option value="Paket C (Lengkap)">Paket C (Lengkap) - Rp 390.000</option>
+                        <option value="Perbaikan Ringan">Perbaikan Ringan - Mulai Rp 50.000</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pesan">Pesan Tambahan (Opsional)</label>
+                    <textarea id="pesan" rows="4" placeholder="Jelaskan kebutuhan website kamu..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim ke WhatsApp <i
+                        class="fab fa-whatsapp"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get package from URL if available
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedPaket = urlParams.get('paket');
+        if (selectedPaket) {
+            const selectEl = document.getElementById('paket');
+            if (selectedPaket === 'A') selectEl.value = 'Paket A (Hemat)';
+            if (selectedPaket === 'B') selectEl.value = 'Paket B (Standar)';
+            if (selectedPaket === 'C') selectEl.value = 'Paket C (Lengkap)';
+        }
+
+        document.getElementById('wa-form').addEventListener('submit', function  (e) {
+            e.preventDefault();
+            const nama = document.getElementById('nama').value;
+            const paket = document.getElementById('paket').value;
+            const pesan = document.getElementById('pesan').value;  const waNumber = "62881027512495";
+            const text = `Halo Param! Saya *${nama}*.\n\nSaya tertarik untuk memesan: *${paket}*.\n\nCatatan tambahan: ${pesan || '-'}\n\nMohon dibantu ya, terima kasih!`;
+
+            dText = encodeURIComponent(text);
+            window.location.href = `https://wa.me/${waNumber}?text=${encodedText}`;
+        });
+    </script>
+</body>
+
+</html>
