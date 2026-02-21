@@ -108,15 +108,16 @@
             if (selectedPaket === 'C') selectEl.value = 'Paket C (Lengkap)';
         }
 
-        document.getElementById('wa-form').addEventListener('submit', function  (e) {
+        document.getElementById('wa-form').addEventListener('submit', function (e) {
             e.preventDefault();
             const nama = document.getElementById('nama').value;
             const paket = document.getElementById('paket').value;
-            const pesan = document.getElementById('pesan').value;  const waNumber = "62881027512495";
+            const pesan = document.getElementById('pesan').value;
+            const waNumber = "62881027512495";
             const text = `Halo Param! Saya *${nama}*.\n\nSaya tertarik untuk memesan: *${paket}*.\n\nCatatan tambahan: ${pesan || '-'}\n\nMohon dibantu ya, terima kasih!`;
 
-            dText = encodeURIComponent(text);
-            window.location.href = `https://wa.me/${waNumber}?text=${encodedText}`;
+            const encodedText = encodeURIComponent(text);
+            window.open(`https://wa.me/${waNumber}?text=${encodedText}`, '_blank');
         });
     </script>
 </body>
